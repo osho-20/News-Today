@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import getNews from '../services/getNews'
 import moment from 'moment';
+import alanBtn from '@alan-ai/alan-sdk-web'
 export default function NewsData() {
     const [newsData, setNews] = useState([]);
     const [selectOpt, setSelectOpt] = useState('');
+    const alanK = 'ffef78e320da8c12b5269332efa566682e956eca572e1d8b807a3e2338fdd0dc/stage';
     const getAll = async () => {
         let data = await getNews(selectOpt);
         setNews(data.data.articles);
@@ -11,6 +13,16 @@ export default function NewsData() {
     const selectCategory = (event) => {
         setSelectOpt(event.target.value);
     }
+
+    useEffect(() => {
+        alanBtn({
+            key: alanK,
+            onCommand: (commandData) => {
+                console.log(commandData.data);
+                setSelectOpt(commandData.data);
+            }
+        });
+    }, []);
     useEffect(() => {
         getAll();
     }, [selectOpt])
