@@ -1,11 +1,9 @@
 import React from 'react'
 
-const NewsData = () => {
+export default function NewsData() {
     return (
         <div className='main'>
             <h1>News Data</h1>
         </div>
     )
 }
-
-export default NewsData;
