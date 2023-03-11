@@ -18,7 +18,6 @@ export default function NewsData() {
         alanBtn({
             key: alanK,
             onCommand: (commandData) => {
-                console.log(commandData.data);
                 setSelectOpt(commandData.data);
             }
         });
